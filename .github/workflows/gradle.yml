@@ -40,7 +40,7 @@ jobs:
         spring.datasource.url: ${{ secrets.datasource_url }} 
         spring.datasource.username: ${{ secrets.datasource_username }} 
         spring.datasource.password: ${{ secrets.datasource_password }}
-        spring.servlet.multipart.location: ${{ servlet_multipart_location }}
+        spring.servlet.multipart.location: ${{ secrets.servlet_multipart_location }}
 
     # 직접 추가
     - name: Run chmod to make gradlew executable
