@@ -59,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: projectWar        # Artifact 이름
-        path: build/libs/*.war  # 폴더 지정 : 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
+        path: build/libs/*.war  # 폴더 지정: 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
 
 
   deploy:
