@@ -60,3 +60,33 @@ jobs:
       with:
         name: projectWar        # Artifact 이름
         path: build/libs/*.war  # 폴더 지정 : 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
+
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+        ## 빌드했던 war 받기
+        - name: Download artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: projectWar
+       
+        # 환경변수 설정
+        - name: Setting environment variables
+          run: |
+            echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
+            echo "AWS_SG_NAME=launch-wizard-2" >> $GITHUB_ENV
+      
+        - uses: actions/checkout@v4
+        - name: copy war via SCP
+          uses: appleboy/scp-action@master
+          with:
+              host: ${{ secrets.SSH_ADDR }} # 퍼블릭 IPv4 DNS
+              username: ${{ secrets.SSH_USER }} # ubuntu
+              key: ${{ secrets.SSH_PEM_KEY }}
+              port: ${{ secrets.PORT }} # 22
+              source: "build/libs/*.war"
+              target: "/home/ubuntu/apache-tomcat-9.0.86/webapps"
+              rm: true
+              
