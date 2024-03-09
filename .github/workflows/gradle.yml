@@ -85,7 +85,7 @@ jobs:
           host: ${{ secrets.SSH_ADDR }} # 퍼블릭 IPv4 DNS
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PEM_KEY }}
-          port: ${{ secrets.PORT }} 
+          port: 22
           source: "build/libs/*.war"
           target: "/home/ubuntu/apache-tomcat-9.0.86/webapps"
           rm: true
