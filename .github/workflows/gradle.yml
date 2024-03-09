@@ -62,7 +62,7 @@ jobs:
         path: build/libs/*.war  # 폴더 지정: 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
 
     - name: copy war via SCP
-      uses: appleboy/scp-action@0.1.3
+      uses: appleboy/scp-action@v0.1.3
       with:
           host: ${{ secrets.SSH_ADDR }} # 퍼블릭 IPv4 DNS
           username: ${{ secrets.SSH_USER }}
