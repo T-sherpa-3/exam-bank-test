@@ -89,7 +89,7 @@ jobs:
           source: "build/libs/*.war"
           target: "/home/ubuntu/apache-tomcat-9.0.86/webapps"
           rm: true
-          scripts: | 
+          script: | 
             ls -al .
             echo $host
             echo $username
