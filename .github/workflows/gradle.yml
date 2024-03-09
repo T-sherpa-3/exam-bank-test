@@ -42,7 +42,7 @@ jobs:
         spring.datasource.password: ${{ secrets.datasource_password }}
         spring.servlet.multipart.location: ${{ secrets.servlet_multipart_location }}
 
-    # 직접 추가
+    # 권한 변경
     - name: Run chmod to make gradlew executable
       run: chmod +x ./gradlew
 
@@ -53,3 +53,10 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+
+    # 아티팩트 업로드
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: projectWar        # Artifact 이름
+        path: build/libs/*.war  # 폴더 지정 : 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
