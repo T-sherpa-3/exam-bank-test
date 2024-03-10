@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Date" %>
 <html>
 <head>
     <title>Title</title>
@@ -54,7 +55,7 @@
 
 
 <!-- 이지연 - 주석 아래로 작성 -->
-<p> 2024/03/08 00:23 </p>
+<p> <%= new Date() %> </p>
 
 
 <!-- 이창규 - 주석 아래로 작성 -->
