@@ -70,12 +70,15 @@ jobs:
           key: ${{ secrets.SSH_PEM_KEY }}
           port: ${{ secrets.PORT }}
           source: "build/libs/*.war"
-          target: "/home/tomcat/from_git"
+          target: ${{ secrets.TARGET_DIR }}
           rm: true
 
     # ec2 ssh 연결
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
+      env: 
+        TOMCAT_PATH: ${{ secrets.TOMCAT_PATH }}
+        TARGET_DIR: ${{ secrets.TARGET_DIR }}
       with:
         host: ${{ secrets.SSH_ADDR }}
         username: ${{ secrets.SSH_USER }}
@@ -84,8 +87,8 @@ jobs:
         script: |
           whoami
           pwd
-          sudo /home/tomcat/apache-tomcat-10.1.19/bin/shutdown.sh
-          sudo cp /home/tomcat/from_git/build/libs/*.war /home/tomcat/apache-tomcat-10.1.19/webapps
-          sudo /home/tomcat/apache-tomcat-10.1.19/bin/startup.sh
+          sudo $TOMCAT_PATH/bin/shutdown.sh
+          sudo cp $TARGET_DIR/build/libs/*.war $TOMCAT_PATH/webapps
+          sudo $TOMCAT_PATH/bin/startup.sh
 
 #####
