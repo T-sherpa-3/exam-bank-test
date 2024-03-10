@@ -84,6 +84,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PEM_KEY }}
         port: ${{ secrets.PORT }}
+        envs: TOMCAT_PATH, TARGET_DIR
         script: |
           whoami
           pwd
