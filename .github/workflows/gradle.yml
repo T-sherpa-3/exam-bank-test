@@ -88,4 +88,4 @@ jobs:
           sudo mv /home/tomcat/from_git/build/libs/*.war /home/tomcat/apache-tomcat-10.1.19/webapps/*.war
           sudo /home/tomcat/apache-tomcat-10.1.19/bin/startup.sh
 
-####
+#####
