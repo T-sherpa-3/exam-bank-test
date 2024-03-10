@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
     <title>Title</title>
@@ -56,9 +57,9 @@
 
 <!-- 이지연 - 주석 아래로 작성 -->
 <%
-	Date date = new Date();
-	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-	String strDate = simpleDate.format(date);
+    Date date = new Date();
+    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+    String strDate = simpleDate.format(date);
 %>
 <p> 현재 날짜: <%= strDate %> </p>
 
