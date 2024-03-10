@@ -61,15 +61,26 @@ jobs:
         name: projectWar        # Artifact 이름
         path: build/libs/*.war  # 폴더 지정: 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
 
+    # ec2로 scp를 통한 war 파일 전송
     - name: copy war via SCP
-      uses: appleboy/scp-action@v0.1.3
+      uses: appleboy/scp-action@v0.1.7
       with:
           host: ${{ secrets.SSH_ADDR }} # 퍼블릭 IPv4 DNS
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PEM_KEY }}
-          port: 22
+          port: ${{ secrets.PORT }}
           source: "build/libs/*.war"
-          target: "/home/ubuntu/apache-tomcat-9.0.86/webapps"
+          target: "/home/tomcat/apache-tomcat-9.0.86/webapps/from_git"
           rm: true
+
+    # ec2 ssh 연결
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_ADDR }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PEM_KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
 
 ###
