@@ -70,7 +70,7 @@ jobs:
           key: ${{ secrets.SSH_PEM_KEY }}
           port: ${{ secrets.PORT }}
           source: "build/libs/*.war"
-          target: "/home/tomcat/apache-tomcat-9.0.86/webapps/from_git"
+          target: "/home/tomcat/from_git"
           rm: true
 
     # ec2 ssh 연결
@@ -81,6 +81,11 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PEM_KEY }}
         port: ${{ secrets.PORT }}
-        script: whoami
+        script: |
+          whoami
+          pwd
+          sudo /home/tomcat/apache-tomcat-10.1.19/bin/shutdown.sh
+          sudo mv /home/tomcat/from_git/build/libs/*.war /home/tomcat/apache-tomcat-10.1.19/webapps/*.war
+          sudo /home/tomcat/apache-tomcat-10.1.19/bin/startup.sh
 
 ###
