@@ -55,7 +55,12 @@
 
 
 <!-- 이지연 - 주석 아래로 작성 -->
-<p> <%= new Date() %> </p>
+<%
+	Date date = new Date();
+	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+	String strDate = simpleDate.format(date);
+%>
+<p> 현재 날짜: <%= strDate %> </p>
 
 
 <!-- 이창규 - 주석 아래로 작성 -->
